@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegancia Femenina - Tienda de Ropa para Damas</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Custom CSS for theme -->
+    <style>
+        body { background-color: #f9f9f9; }
+        .navbar { background-color: #ffc0cb !important; }
+        .navbar-brand, .nav-link { color: #333 !important; font-weight: bold; }
+        .hero { background-color: #ffb6c1; color: #333; padding: 3rem 0; text-align: center; }
+        .product-card { transition: transform 0.2s; }
+        .product-card:hover { transform: scale(1.05); }
+        .btn-primary { background-color: #e75480; border-color: #e75480; }
+        .btn-primary:hover { background-color: #d63384; border-color: #d63384; }
+        .cart-total { font-weight: bold; color: #e75480; }
+        footer { background-color: #ffc0cb; color: #333; padding: 1rem 0; margin-top: 2rem; }
+        .filter-btn { margin: 0.25rem; }
+        .filter-btn.active { background-color: #d63384; }
+        #searchInput { max-width: 300px; }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Elegancia Femenina</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal" id="cart-toggle">Carrito <span class="badge bg-danger" id="cart-count">0</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="display-4">Bienvenida a Elegancia Femenina</h1>
+            <p class="lead">Descubre la colección exclusiva de ropa para damas. ¡Estilo y comodidad en cada prenda!</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <div class="container my-5">
+        <section id="products">
+            <h2 class="text-center mb-4">Nuestro Catálogo para Ti</h2>
+            <!-- Search Bar -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Buscar productos...">
+                </div>
+            </div>
+            <!-- Filters by Season -->
+            <div class="row mb-4 justify-content-center">
+                <div class="col-md-8">
+                    <h5 class="text-center mb-3">Filtrar por Temporada</h5>
+                    <div class="btn-group w-100" role="group">
+                        <button type="button" class="btn btn-outline-primary filter-btn active" data-season="all">Todas</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn" data-season="primavera">Primavera</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn" data-season="verano">Verano</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn" data-season="otoño">Otoño</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn" data-season="invierno">Invierno</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="products-grid">
+                <!-- Product 1: Blusa Blanca - Primavera/Verano -->
+                <div class="col-md-3 mb-4" data-season="primavera verano">
+                    <div class="card product-card h-100">
+                        <img src="https://via.placeholder.com/300x400?text=Blusa+Blanca" class="card-img-top" alt="Blusa Blanca Elegante">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Blusa Blanca Elegante</h5>
+                            <p class="card-text text-muted flex-grow-1">$29.99</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart('Blusa Blanca Elegante', 29.99)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2: Vestido Floral - Verano -->
+                <div class="col-md-3 mb-4" data-season="verano">
+                    <div class="card product-card h-100">
+                        <img src="https://via.placeholder.com/300x400?text=Vestido+Floral" class="card-img-top" alt="Vestido Floral Verano">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Vestido Floral Verano</h5>
+                            <p class="card-text text-muted flex-grow-1">$49.99</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart('Vestido Floral Verano', 49.99)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3: Falda Negra - Otoño -->
+                <div class="col-md-3 mb-4" data-season="otoño">
+                    <div class="card product-card h-100">
+                        <img src="https://via.placeholder.com/300x400?text=Falda+Negra" class="card-img-top" alt="Falda Negra Clásica">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Falda Negra Clásica</h5>
+                            <p class="card-text text-muted flex-grow-1">$34.99</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart('Falda Negra Clásica', 34.99)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4: Chaleco Beige - Otoño/Invierno -->
+                <div class="col-md-3 mb-4" data-season="otoño invierno">
+                    <div class="card product-card h-100">
+                        <img src="https://via.placeholder.com/300x400?text=Chaleco+Beige" class="card-img-top" alt="Chaleco Beige Chic">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Chaleco Beige Chic</h5>
+                            <p class="card-text text-muted flex-grow-1">$44.99</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart('Chaleco Beige Chic', 44.99)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product 5: Abrigo Rojo - Invierno -->
+                <div class="col-md-3 mb-4" data-season="invierno">
+                    <div class="card product-card h-100">
+                        <img src="https://via.placeholder.com/300x400?text=Abrigo+Rojo" class="card-img-top" alt="Abrigo Rojo Cálido">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Abrigo Rojo Cálido</h5>
+                            <p class="card-text text-muted flex-grow-1">$89.99</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart('Abrigo Rojo Cálido', 89.99)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product 6: Top Verde - Primavera -->
+                <div class="col-md-3 mb-4" data-season="primavera">
+                    <div class="card product-card h-100">
+                        <img src="https://via.placeholder.com/300x400?text=Top+Verde" class="card-img-top" alt="Top Verde Fresco">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Top Verde Fresco</h5>
+                            <p class="card-text text-muted flex-grow-1">$24.99</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart('Top Verde Fresco', 24.99)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product 7: Pantalón Cargo - Otoño -->
+                <div class="col-md-3 mb-4" data-season="otoño">
+                    <div class="card product-card h-100">
+                        <img src="https://via.placeholder.com/300x400?text=Pantalón+Cargo" class="card-img-top" alt="Pantalón Cargo Práctico">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Pantalón Cargo Práctico</h5>
+                            <p class="card-text text-muted flex-grow-1">$59.99</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart('Pantalón Cargo Práctico', 59.99)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product 8: Sandalias - Verano -->
+                <div class="col-md-3 mb-4" data-season="verano">
+                    <div class="card product-card h-100">
+                        <img src="https://via.placeholder.com/300x400?text=Sandalias+Verano" class="card-img-top" alt="Sandalias Verano Ligera">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Sandalias Verano Ligera</h5>
+                            <p class="card-text text-muted flex-grow-1">$39.99</p>
+                            <button class="btn btn-primary mt-auto" onclick="addToCart('Sandalias Verano Ligera', 39.99)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #ffc0cb; color: #333;">
+                    <h5 class="modal-title" id="cartModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cart-items" class="list-group mb-3"></div>
+                    <p class="cart-total text-end fs-5" id="total">Total: $0.00</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="checkout" onclick="checkout()">Proceder al Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2025 Elegancia Femenina. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script>
+        let cart = [];
+        let total = 0;
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                filterProducts(e.target.value, getActiveSeason());
+            });
+
+            // Season filter buttons
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    filterProducts(searchInput.value, btn.dataset.season);
+                });
+            });
+
+            updateCartDisplay();
+        });
+
+        function filterProducts(searchTerm = '', season = 'all') {
+            const products = document.querySelectorAll('#products-grid > div');
+            products.forEach(product => {
+                const title = product.querySelector('.card-title').textContent.toLowerCase();
+                const seasons = product.dataset.season.toLowerCase();
+
+                const matchesSearch = title.includes(searchTerm.toLowerCase());
+                const matchesSeason = season === 'all' || seasons.includes(season.toLowerCase());
+
+                product.style.display = matchesSearch && matchesSeason ? 'block' : 'none';
+            });
+        }
+
+        function getActiveSeason() {
+            const activeBtn = document.querySelector('.filter-btn.active');
+            return activeBtn ? activeBtn.dataset.season : 'all';
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            total += price;
+            updateCartDisplay();
+            // Bootstrap alert for feedback
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
+            alert.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 250px;';
+            alert.innerHTML = `
+                <strong>¡Éxito!</strong> ${name} agregado al carrito.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alert);
+            // Auto remove alert after 3s
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const totalElement = document.getElementById('total');
+            const cartCount = document.getElementById('cart-count');
+
+            cartItems.innerHTML = '';
+            cart.forEach((item, index) => {
+                const listItem = document.createElement('div');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                listItem.innerHTML = `
+                    ${item.name} - $${item.price.toFixed(2)}
+                    <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">Eliminar</button>
+                `;
+                cartItems.appendChild(listItem);
+            });
+
+            totalElement.textContent = `Total: $${total.toFixed(2)}`;
+            cartCount.textContent = cart.length;
+        }
+
+        function removeFromCart(index) {
+            total -= cart[index].price;
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío!');
+                return;
+            }
+            // Bootstrap alert for checkout
+            const alert = document.createElement('div');
+            alert.className = 'alert alert-success alert-dismissible fade show position-fixed';
+            alert.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 250px;';
+            alert.innerHTML = `
+                <strong>¡Gracias por tu compra!</strong> Total: $${total.toFixed(2)}. (Simulación - En una web real, iría a pagos.)
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 5000);
+            cart = [];
+            total = 0;
+            updateCartDisplay();
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+            modal.hide();
+        }
+    </script>
+</body>
+</html>
